@@ -1,0 +1,49 @@
+services:
+  # =======================================================
+  # 1. FastAPI + ChromaDB Backend Service
+  # =======================================================
+  - type: web
+    name: vidya-setu-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: GROQ_API_KEY
+        sync: false # Render dashboard will prompt for this secret
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: EMBEDDING_MODEL
+        value: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_store
+      - key: FRONTEND_ORIGIN
+        value: "*"
+
+  # =======================================================
+  # 2. Next.js Vintage Frontend Service
+  # =======================================================
+  - type: web
+    name: vidya-setu-frontend
+    runtime: node
+    rootDir: frontend
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.14.0
+      - key: NEXT_PUBLIC_API_BASE
+        fromService:
+          type: web
+          name: vidya-setu-backend
+          property: url

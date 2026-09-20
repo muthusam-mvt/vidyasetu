@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;600;700;900&family=Pirata+One&family=MedievalSharp&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-gothic: "UnifrakturMaguntia", cursive;
+  --font-display: "Cinzel", "Cinzel Decorative", serif;
+  --font-medieval: "Pirata One", "MedievalSharp", serif;
+  --font-body: "Crimson Pro", "EB Garamond", serif;
+  --font-deva: "Noto Sans Devanagari", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #171d15;
+  background-image:
+    radial-gradient(ellipse 1400px 900px at 50% 20%, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.88) 100%),
+    url('/textures/damask_bg.jpg');
+  background-repeat: repeat;
+  background-size: 420px 420px;
+  background-attachment: fixed;
+  color: #2b1f13;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Gothic Title Styling (matches "Your Site" in reference image) --- */
+.gothic-title {
+  font-family: var(--font-gothic);
+  color: #f7f1e3;
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.95),
+    0 0 15px rgba(255, 245, 220, 0.6),
+    0 0 35px rgba(184, 148, 90, 0.4);
+  letter-spacing: 0.04em;
+}
+
+/* --- Vertical Velvet Banner (runs behind the frame from top to bottom) --- */
+.crimson-banner {
+  background-color: #3b0a0a;
+  background-image:
+    linear-gradient(180deg, rgba(15,2,2,0.85) 0%, rgba(70,12,12,0.4) 30%, rgba(55,10,10,0.5) 70%, rgba(18,2,2,0.92) 100%),
+    url('/textures/crimson_velvet.jpg');
+  background-size: 320px 320px;
+  border-left: 3px solid #b8945a;
+  border-right: 3px solid #b8945a;
+  box-shadow:
+    0 0 0 1px #220808,
+    0 15px 50px rgba(0, 0, 0, 0.9),
+    inset 0 0 45px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Heavy 3D Metallic Carved Frame --- */
+.metallic-frame-wrap {
+  position: relative;
+  background-color: #2e241b;
+  background-image:
+    linear-gradient(135deg, #443525 0%, #201710 40%, #3a2d1e 65%, #18120b 100%);
+  border: 4px solid #140e08;
+  outline: 6px solid #5a462f;
+  outline-offset: -10px;
+  box-shadow:
+    0 0 0 2px #9c7f55,
+    0 0 0 8px #261c12,
+    0 0 0 12px #483724,
+    0 0 0 14px #150f09,
+    0 30px 70px rgba(0, 0, 0, 0.95),
+    inset 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Inner Aged Parchment Canvas --- */
+.parchment-canvas {
+  position: relative;
+  background-color: #e6d3ab;
+  background-image:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, rgba(45,26,12,0.32) 100%),
+    url('/textures/parchment.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    inset 0 0 50px rgba(45, 26, 12, 0.65),
+    inset 0 0 110px rgba(25, 12, 5, 0.45),
+    0 4px 15px rgba(0, 0, 0, 0.6);
+  border: 1px solid #735738;
+}
+
+/* --- Hanging Suspension Wire --- */
+.suspension-wire {
+  width: 1px;
+  background: linear-gradient(180deg, rgba(200, 180, 140, 0.8) 0%, rgba(80, 60, 40, 0.6) 100%);
+  box-shadow: 0 0 2px rgba(0,0,0,0.8);
+}
+
+/* --- Swallowtail Crimson Hanging Pennants --- */
+.swallowtail-pennant {
+  background: linear-gradient(180deg, #5c1414 0%, #300808 85%, #1d0303 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
+  border-left: 1px solid #c29e62;
+  border-right: 1px solid #c29e62;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.8);
+}
+
+/* --- Suspended Navigation Bar inside Frame --- */
+.suspended-nav {
+  background: linear-gradient(180deg, #3d2719 0%, #1a0f0a 50%, #291a10 100%);
+  border-top: 2px solid #b8945a;
+  border-bottom: 2px solid #5a4128;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* --- Active Nav Spotlight Beam --- */
+.nav-spotlight {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 24px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.5) 40%, transparent 100%);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  pointer-events: none;
+}
+
+/* --- Vintage Maroon & Brass Action Button (Matches PREVIOUS / NEXT in reference) --- */
+.vintage-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 18px;
+  background: linear-gradient(180deg, #5c1414 0%, #3a0b0b 60%, #200505 100%);
+  color: #f7efda;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 1px solid #b8945a;
+  outline: 1px solid #4a1212;
+  outline-offset: -3px;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 180ms ease-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.vintage-btn:hover {
+  background: linear-gradient(180deg, #741d1d 0%, #4c1111 60%, #2c0808 100%);
+  border-color: #e6c888;
+  color: #ffffff;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.85),
+    0 0 8px rgba(230, 200, 136, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.vintage-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Arrow style for Previous / Next --- */
+.vintage-btn-arrow-left {
+  clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 10px 100%, 0% 50%);
+  padding-left: 20px;
+}
+
+.vintage-btn-arrow-right {
+  clip-path: polygon(0% 0%, calc(100% - 10px) 0%, 100% 50%, calc(100% - 10px) 100%, 0% 100%);
+  padding-right: 20px;
+}
+
+/* --- Custom Vintage Scrollbar (matches vertical slider in reference) --- */
+.vintage-scrollbar::-webkit-scrollbar {
+  width: 14px;
+}
+.vintage-scrollbar::-webkit-scrollbar-track {
+  background: #cbb48c;
+  border-left: 1px solid #9e855f;
+  border-right: 1px solid #9e855f;
+  box-shadow: inset 0 0 6px rgba(60, 35, 15, 0.4);
+}
+.vintage-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6e1c1c 0%, #3e1010 100%);
+  border: 1px solid #b8945a;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.vintage-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #882424 0%, #541616 100%);
+  border-color: #d8bd82;
+}
+
+/* --- Subtopic Vintage Card --- */
+.vintage-topic-card {
+  position: relative;
+  background-color: #e5d3ab;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(255,255,255,0.15) 0%, rgba(45,26,12,0.2) 100%),
+    url('/textures/parchment.jpg');
+  background-size: cover;
+  border: 4px double #7a6345;
+  outline: 2px solid #281d13;
+  outline-offset: -7px;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(60, 35, 15, 0.35);
+  transition: all 250ms ease-out;
+}
+
+.vintage-topic-card:hover {
+  transform: translateY(-4px);
+  border-color: #b8945a;
+  box-shadow:
+    0 16px 35px rgba(0, 0, 0, 0.85),
+    0 0 15px rgba(184, 148, 90, 0.25),
+    inset 0 0 30px rgba(60, 35, 15, 0.25);
+}
+
+.manuscript-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b8945a, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-reveal {
+    animation: hero-reveal 900ms ease-out both;
+  }
+  @keyframes hero-reveal {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #d8bd82;
+  outline-offset: 3px;
+}
