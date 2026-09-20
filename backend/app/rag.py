@@ -24,7 +24,7 @@ def _create_embedding_function():
 
         class FastEmbedFunction(EmbeddingFunction):
             def __init__(self, model_name: str):
-                self._model = TextEmbedding(model_name=model_name)
+                self._model = TextEmbedding(model_name=model_name, threads=1)
 
             def __call__(self, input: Documents) -> Embeddings:
                 return [e.tolist() for e in self._model.embed(input)]
@@ -33,9 +33,7 @@ def _create_embedding_function():
     except Exception:
         from chromadb.utils import embedding_functions
 
-        return embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name=settings.embedding_model
-        )
+        return embedding_functions.DefaultEmbeddingFunction()
 
 
 _client = chromadb.PersistentClient(path=settings.chroma_persist_dir)

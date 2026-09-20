@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     # --- Vector store / RAG ---
     chroma_persist_dir: str = "./chroma_store"
-    embedding_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     collection_name: str = "iks_knowledge_base"
     top_k: int = 4
 

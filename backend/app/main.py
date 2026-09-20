@@ -23,8 +23,13 @@ app.add_middleware(
 
 @app.on_event("startup")
 def startup_ingest():
-    # Idempotent: only embeds documents that aren't already stored.
-    ingest_knowledge_base()
+    # Only ingest if collection is empty to keep startup memory and time minimal
+    try:
+        from app.rag import _collection
+        if _collection.count() == 0:
+            ingest_knowledge_base()
+    except Exception as e:
+        print(f"Startup ingest notice: {e}")
 
 
 @app.get("/api/health")
