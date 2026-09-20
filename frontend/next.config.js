@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
-const backendHost = process.env.BACKEND_HOST;
-const backendPort = process.env.BACKEND_PORT || "8000";
+const isDev = process.env.NODE_ENV === "development";
 const apiBase =
   process.env.NEXT_PUBLIC_API_BASE ||
-  (backendHost ? `http://${backendHost}:${backendPort}` : "http://localhost:8000");
+  (isDev ? "http://localhost:8000" : "https://vidya-setu-backend.onrender.com");
 
 const nextConfig = {
   reactStrictMode: true,

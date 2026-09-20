@@ -10,6 +10,16 @@ export interface SendChatMessageOptions {
   apiKey?: string | null;
 }
 
+function getApiEndpoint(): string {
+  if (process.env.NEXT_PUBLIC_API_BASE) {
+    return `${process.env.NEXT_PUBLIC_API_BASE}/api/chat`;
+  }
+  if (typeof window !== "undefined" && window.location.hostname.includes("onrender.com")) {
+    return "https://vidya-setu-backend.onrender.com/api/chat";
+  }
+  return "/api/chat";
+}
+
 export async function sendChatMessage({
   messages,
   provider,
@@ -27,7 +37,9 @@ export async function sendChatMessage({
     payload.api_key = apiKey;
   }
 
-  const res = await fetch("/api/chat", {
+  const endpoint = getApiEndpoint();
+
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

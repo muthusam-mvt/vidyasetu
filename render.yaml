@@ -16,13 +16,13 @@ services:
       - key: WEB_CONCURRENCY
         value: "1"
       - key: MALLOC_ARENA_MAX
-        value: "2" # Controls memory fragmentation on 512MB Linux containers
+        value: "2"
       - key: LLM_PROVIDER
         value: groq
       - key: GROQ_MODEL
         value: openai/gpt-oss-120b
       - key: GROQ_API_KEY
-        sync: false # Render dashboard will prompt for this secret
+        sync: false
       - key: OPENAI_API_KEY
         sync: false
       - key: EMBEDDING_MODEL
@@ -46,15 +46,5 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20.14.0
-      - key: BACKEND_HOST
-        fromService:
-          type: web
-          name: vidya-setu-backend
-          property: host
-      - key: BACKEND_PORT
-        fromService:
-          type: web
-          name: vidya-setu-backend
-          property: port
       - key: NEXT_PUBLIC_API_BASE
-        sync: false
+        value: https://vidya-setu-backend.onrender.com
