@@ -42,8 +42,15 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20.14.0
-      - key: NEXT_PUBLIC_API_BASE
+      - key: BACKEND_HOST
         fromService:
           type: web
           name: vidya-setu-backend
-          property: url
+          property: host
+      - key: BACKEND_PORT
+        fromService:
+          type: web
+          name: vidya-setu-backend
+          property: port
+      - key: NEXT_PUBLIC_API_BASE
+        sync: false # Optional public URL override if desired
