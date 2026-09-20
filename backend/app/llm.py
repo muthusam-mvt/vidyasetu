@@ -21,9 +21,9 @@ def _get_client_and_model(provider: str | None, api_key: str | None):
         return OpenAI(api_key=key), settings.openai_model
 
     if provider == "groq":
-        key = api_key or settings.groq_api_key
+        key = (api_key or settings.groq_api_key or "").strip()
         if not key:
-            raise ValueError("No Groq API key configured.")
+            raise ValueError("No Groq API key configured on the server. Please click '⚙ Keys' to enter your Groq key, or add GROQ_API_KEY in Render dashboard.")
         return Groq(api_key=key), settings.groq_model
 
     raise ValueError(f"Unsupported LLM provider: {provider}")
